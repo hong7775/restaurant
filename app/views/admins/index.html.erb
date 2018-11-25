@@ -1,0 +1,26 @@
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8">
+            <table>
+              <tr class="table table-striped">
+                <th style="width:40%">Name</th>
+                <th style="width:30%">Email</th>
+                <th style="width:30%">Password</th>
+                <th colspan="3"></th>
+              </tr>
+              <tr>
+              <% @admins.each do |admin| %>
+                <td style="width:40%"><%= admin.name %></td>
+                <td style="width:30%"><%= admin.email %></td>
+                <td style="width:30%"><%= admin.password %></td>
+                <td><%= link_to 'Show', admin %></td>
+                <td><%= link_to 'Edit', edit_admin_path(admin) %></td>
+                <td><%= link_to 'Destroy', admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
+              </tr>
+            </table>
+        </div>
+      </div>
+    </div>    
+
+<%= link_to 'New Admin', new_admin_path %>

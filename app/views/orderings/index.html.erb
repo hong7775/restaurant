@@ -1,0 +1,97 @@
+<div data-turbolinks = "false">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-2" >
+        <div class="list-group sticky">
+          <table>
+            <tr>
+              <td class="list-group-item list-group-item-action">
+                <%= link_to "All", "#", class: "filteringByCategory" %>
+              </td>
+            </tr>
+            <% @categories.each do |category| %>
+            <tr>
+              <td class="list-group-item list-group-item-action"><%= link_to category.name, "#",class: "filteringByCategory", data: {category_id: category.id} %></td>
+            </tr>  
+            <% end %>
+          </table>
+        </div>
+      </div>
+    
+  
+    <!-- Menu Section -->
+      <div class="col-lg-6">
+        <h4 class="bg-primary navbar navbar-expand-sm navbar-light">Menu Item</h4>
+        <table class="table table-striped">
+          <tr>
+            <thead>
+              <th style="width:40%">Photo</th>
+              <th style="width:15%">Name</th>
+              <th style="width:15%">Unit Price</th>
+              <th style="width:10%">Quantity</th>
+              <th style="width:20%">Action</th>
+            </thead>
+          </tr>
+          <tbody id="menu_items">
+            
+          </tbody>
+          <!--<%# @menu_items.each do |item| %>-->
+          <!--  <%#= form_tag "/orderings/order" do %>-->
+          <!--    <%#= hidden_field_tag "menu_item_id", item.id %>-->
+          <!--      <tr>-->
+          <!--        <td style="width:40%"><%#= image_tag item.photo.variant(resize: "200x200") %></td>-->
+          <!--        <td style="width:15%"><%#= item.name %></td> -->
+          <!--        <td style="width:15%"><%#= item.unit_price %></td>-->
+          <!--        <td style="width:15%"><%#= number_field_tag "quantity" %></td>-->
+          <!--        <td style="width:15%"><%#= submit_tag "Add to Cart" %></td>-->
+          <!--      </tr>-->
+          <!--  <%# end %>-->
+          <!--<%# end %>-->
+        </table>
+      </div>
+  
+      <div class="col-lg-4">
+      <h4 class="bg-primary navbar navbar-expand-sm navbar-light">Order Items</h4>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th style="width:20%">Name</th>
+              <th style="width:20%">Quantity</th>
+              <th style="width:20%">Unit Price</th>
+              <th style="width:20%">Total Price</th>
+            </tr>
+          </thead>
+          <tbody id="order_items">
+            
+          </tbody>
+   
+          <!--<%# if @order.present? %>-->
+          <!--<%# sum_total = 0.0 %>-->
+          <!--<%# @order.order_items.each do |order_item| %>-->
+          <!--<%# sum_total += order_item.menu_item.unit_price * order_item.quantity %>-->
+          <!--<tr>-->
+          <!--  <td><%#= order_item.menu_item.name %></td>-->
+          <!--  <td><%#= order_item.quantity %></td>-->
+          <!--  <td><%#= order_item.menu_item.unit_price %></td>-->
+          <!--  <td><%#= order_item.menu_item.unit_price * order_item.quantity %></td>-->
+            <!--<td>-->
+            <!--    <%#= link_to "-", decrement_quantity_ordering_path(order_item), data: {method: :delete} %>-->
+            <!--    <%#= link_to "+", increment_quantity_ordering_path(order_item), data: {method: :put} %>-->
+            <!--</td>-->
+          <!--</tr>-->
+          <!--<%# end %>-->
+          <!--<%# end %>-->
+         
+          <% if session[:order_id].present? %>
+           <tr>
+             <td colspan="3">Total Sum : RM <%= sum_total %></td>
+             <td><button><%= link_to "Checkout", checkout_orderings_path %></button></td>
+           </tr>
+           <% else %>
+          <tr>
+            <td colspan="4" style="text-align:center; font-size:20px">You have no order yet</td>
+          </tr>
+           <% end %>
+        </table>
+  </div> 
+</div>

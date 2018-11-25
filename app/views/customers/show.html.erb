@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @customer.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @customer.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @customer.password %>
+</p>
+
+<hr></hr>
+<h2>Orders</h2>
+<table>
+  <tr>
+    <th>Order ID</th>
+    <th>Date</th>
+  </tr>
+  <% @customer.orders.each do |order|%>
+  <tr>
+    <td> <%= order.id %> </td>
+    <td> <%= order.ordering_date %> </td>
+  </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>

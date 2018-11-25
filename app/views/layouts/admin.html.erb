@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Restaurant</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  </head>
+  
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#"><%= image_tag("logo.jpg", size: "40x40", alt: "Logo")%></a>
+  
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+  
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+  
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">Dropdown</a>
+          <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li>
+          <p style="font-size:30px; color:white"><%= display_name %></p>
+        </li>
+      </ul>
+      <!-- Links -->
+  
+        <div class="md-form my-0">
+          <button class="form-control mr-sm-2">
+            <% if session[:admin_id].present? %>
+            <%= link_to "Logout", "/admin/logout", data: { method: :delete} %>
+            <% end %>
+          </button>
+        </div>
+    </div>
+    <!-- Collapsible content -->
+  
+  </nav>
+  <!--/.Navbar-->  
+  
+  <body>
+    <% if flash[:alert].present? %>
+      <p class= "alert_message">
+        <%= flash[:alert] %>
+      </p>
+    <% end %>
+    
+    <% if flash[:notice].present? %>
+      <p class= "notice_message">
+        <%= flash[:notice] %>
+      </p>
+    <% end %>
+    
+    <div class="container-fluid">
+      <div class="row";>
+        <div class="col-lg-2" >
+          <div class="list-group sticky">
+            <table>
+              <tr>
+                <td class="list-group-item list-group-item-action"><%= link_to "Admin", admins_path %></td>
+                <td class="list-group-item list-group-item-action"><%= link_to "Customer", customers_path %></td>
+                <td class="list-group-item list-group-item-action"><%= link_to "Category", categories_path %></td>
+                <td class="list-group-item list-group-item-action"><%= link_to "Menu Item", menu_items_path %></td>
+                <td class="list-group-item list-group-item-action"><%= link_to "Order", orders_path %></td>
+                <!--<td class="list-group-item list-group-item-action">-->
+                <!--  <%#if session[:admin_id].present? %>-->
+                <!--    <%#= link_to "Logout", "/admin/logout", data: { method: :delete} %>-->
+                <!--  <%# end %>-->
+                <!--</td>-->
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="col-lg-8" >
+          <%= yield %>
+        </div>
+      </div>
+    </div>    
+    
+  </body>
+</html>
