@@ -1,6 +1,6 @@
 class OrderingsController < ApplicationController
   before_action :authenticate_user, except: [:index]
-  
+  # testing
   def index
     # if session[:order_id].present?
     #   @order = Order.find session[:order_id]
