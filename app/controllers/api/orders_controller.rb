@@ -4,7 +4,6 @@ class Api::MenuItemsController < ApplicationController
     def index
       if session[:order_id].present?
         
-        
       else
         render json: []
       end
